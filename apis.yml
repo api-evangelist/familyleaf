@@ -1,19 +1,47 @@
 aid: familyleaf
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source: []
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/familyleaf.png
 name: FamilyLeaf
-description: FamilyLeaf is a company surfaced as a portfolio company of 500-global and added to the API
-  Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  FamilyLeaf was a private social network for families, launched in 2012 and marketed as "a place to
+  share your life with your family" — a closed, invite-based space for sharing photos and updates
+  among relatives rather than a public feed. The company was surfaced as a portfolio company of
+  500 Global and added to the API Evangelist network as a stub for enrichment. Enrichment probes on
+  2026-07-20 found no operating company: familyleaf.com is registered (GoDaddy, registry expiry
+  2027-03-09) but delegated to no nameservers at all, so it has no A record, no mail, no website and
+  no API surface. The last live archived snapshot of the product (2014) carries a banner announcing
+  that FamilyLeaf had become part of Origami; by the 2023 archived snapshot the domain was serving a
+  registrar parking page. There is no developer portal, documentation, SDK, GitHub organization, or
+  any other API artifact to capture. This profile is retained as a historical company record.
 url: https://raw.githubusercontent.com/api-evangelist/familyleaf/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - 500-global
 x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier-reason: defunct-no-api-surface
+x-status: defunct
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
+- Social Network
+- Family
+- Photo Sharing
+- Consumer
+- Defunct
+- No API
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -23,3 +51,41 @@ maintainers:
 common:
 - type: Website
   url: https://familyleaf.com
+x-probes:
+  date: '2026-07-20'
+  method: probed
+  results:
+  - target: familyleaf.com
+    check: dns-a
+    result: no A record
+  - target: familyleaf.com
+    check: dns-ns
+    result: no nameserver delegation
+  - target: www.familyleaf.com
+    check: dns-a
+    result: no A record
+  - target: https://familyleaf.com
+    check: http
+    result: could not resolve host
+  - target: familyleaf.com
+    check: whois
+    result: >-
+      registered via GoDaddy, created 2012-03-09, registry expiry 2027-03-09, client*Prohibited
+      status locks, no nameservers listed
+  - target: https://github.com/familyleaf
+    check: http
+    status: 404
+    result: no GitHub organization
+  - target: http://web.archive.org/web/20140625154727/https://familyleaf.com/
+    check: archive
+    result: last live product snapshot; banner states FamilyLeaf "is now part of" Origami
+  - target: http://web.archive.org/web/20230315222521/http://familyleaf.com/
+    check: archive
+    result: registrar domain-parking page
+  conclusion: >-
+    No reachable host and no API surface; no artifacts could be searched, generated, or derived.
+x-enrichment:
+  date: '2026-07-20'
+  status: nochange
+  artifacts_added: 0
+  pass: local-v1
